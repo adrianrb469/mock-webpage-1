@@ -13,8 +13,8 @@ function Navbar() {
                 />
             </div>
             <div className={`${styles.section} ${styles.links}`}>
-                <a href="/a">AB0UT </a>
-                <a href="/a">W0RK</a>
+                <a href="/a">ABOUT</a>
+                <a href="/a">WORK</a>
             </div>
             <div className={`${styles.section} ${styles.socials}`}>
                 <i className="fa-brands fa-instagram" />

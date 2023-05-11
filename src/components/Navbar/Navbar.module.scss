@@ -2,17 +2,18 @@
 
 .nav {
     color: $secondary-color;
-    background-image: linear-gradient(to top, #102629, #0b1413, #070b0a);
+    border-bottom: $border-size $border-color solid;
+    background: $background-color;
     display: flex;
     width: 100%;
     font-family: $normal-font;
 }
 
 .section {
-    border-left: $primary-color 3px solid;
-    background: rgb(16, 38, 41);
+    border-left: $border-color $border-size solid;
+
     display: flex;
-    padding: 2.7rem 3rem;
+    padding: 2.1rem 2rem;
     justify-content: center;
     align-items: center;
     gap: 3rem;
@@ -25,7 +26,7 @@
 .section a {
     text-decoration: none;
     color: $primary-color;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .logo {
@@ -41,11 +42,25 @@
         transform: rotate(180deg);
     }
     border: none;
+
+    @media (max-width: 1279px) {
+        gap: 2rem;
+        flex-basis: calc(100% / 4);
+    }
 }
 
 .links {
     flex-basis: calc(100% / 3);
     gap: 8rem;
+
+    @media (max-width: 1279px) {
+        gap: 2rem;
+        flex-basis: calc(100% / 4);
+    }
+
+    @media (max-width: 598px) {
+        display: none;
+    }
 }
 
 .section.links a:first-of-type {

@@ -1,0 +1,58 @@
+@use 'src/utils/variables' as *;
+
+.carousel {
+    background-color: $background-color;
+    color: $secondary-color;
+    height: 100%;
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    @media (max-width: 977px) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.picture {
+    border-bottom: $border-size $border-color solid;
+
+    img {
+        filter: hue-rotate(290deg);
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        @media (max-width: 977px) {
+            height: unset;
+        }
+    }
+}
+
+.description {
+    border-left: $border-size $border-color solid;
+    border-bottom: $border-size $border-color solid;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column-reverse;
+    padding: 4em;
+    font-family: $normal-font;
+    font-size: 1.2rem;
+    text-align: left;
+    white-space: pre-line;
+    line-height: 1.7;
+
+    p {
+        width: 80%;
+    }
+
+    background: radial-gradient(
+            circle at 1% 50%,
+            rgba(20, 51, 55, 1),
+            rgba(0, 0, 0, 0.86)
+        ),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 290 290' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='9.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+.controls {
+    border-left: $border-size $border-color solid;
+}
