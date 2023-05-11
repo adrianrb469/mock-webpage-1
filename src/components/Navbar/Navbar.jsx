@@ -1,9 +1,9 @@
 import React from 'react'
-import * as styles from './Navbar.module.css'
+import * as styles from './Navbar.module.scss'
 
 function Navbar() {
     return (
-        <nav>
+        <nav className={`${styles.nav}`}>
             <div className={`${styles.section} ${styles.logo}`}>
                 <img
                     src="/src/assets/Vector.svg"
