@@ -10,6 +10,7 @@ function Navbar() {
                     alt="logo"
                     width={40}
                     height={40}
+                    id="logo"
                 />
             </div>
             <div className={`${styles.section} ${styles.links}`}>
