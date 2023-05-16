@@ -16,8 +16,27 @@ function Carousel() {
                     the years.
                 </p>
             </article>
-            <article>3</article>
-            <article className={`${styles.controls}`}>4</article>
+            <article className={`${styles.title}`} id="title">
+                <div className={`${styles.thing}`}>
+                    <h1 id="title">
+                        SHOW
+                        <br /> PROJECT
+                        <br />
+                        CONCEPT <br />
+                        DESIGNS
+                    </h1>
+
+                    <h1 id="title">👁</h1>
+                </div>
+            </article>
+            <article className={`${styles.controls}`}>
+                <button type="button">
+                    <i className="fas fa-chevron-left" />
+                </button>
+                <button type="button">
+                    <i className="fas fa-chevron-right" />
+                </button>
+            </article>
         </main>
     )
 }
