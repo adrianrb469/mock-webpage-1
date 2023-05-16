@@ -16,9 +16,9 @@ function Carousel() {
                     the years.
                 </p>
             </article>
-            <article className={`${styles.title}`} id="title">
-                <div className={`${styles.thing}`}>
-                    <h1 id="title">
+            <article className={`${styles.title} effect-title`} id="title">
+                <div className={`${styles.thing} effect-title`}>
+                    <h1 className="effect-title">
                         SHOW
                         <br /> PROJECT
                         <br />
@@ -26,7 +26,7 @@ function Carousel() {
                         DESIGNS
                     </h1>
 
-                    <h1 id="title">👁</h1>
+                    <h1 className="effect-title">✦</h1>
                 </div>
             </article>
             <article className={`${styles.controls}`}>

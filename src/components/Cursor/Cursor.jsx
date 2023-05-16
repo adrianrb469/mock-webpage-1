@@ -7,75 +7,88 @@ function Cursor({ mousePosition }) {
     useEffect(() => {
         const cursor = svgRef.current
         const eye = svgRef2.current
-        const delay = 0.28
+        const delay = 0.24
 
         const element = document.elementFromPoint(
             mousePosition.x,
             mousePosition.y
         )
 
-        if (element.tagName === 'A' || element.id === 'logo') {
-            gsap.to(cursor, {
-                x: mousePosition.x,
-                y: mousePosition.y,
-                duration: 0.8,
-                ease: 'power3',
-                fill: 'black',
-                r: 30,
-                strokeWidth: '0px',
-            })
-            gsap.to(eye, {
-                duration: delay,
-                x: mousePosition.x,
-                y: mousePosition.y,
-                ease: 'power3',
-                scale: 0,
-                fill: 'white',
-            })
-        } else if (element.id === 'title') {
-            gsap.to(cursor, {
-                x: mousePosition.x,
-                y: mousePosition.y,
-                duration: 0.8,
-                ease: 'power3',
-                r: 50,
-                fill: 'red',
-                mixBlendMode: 'normal',
-                stroke: 'grey',
-                strokeWidth: '5px',
-            })
-            gsap.to(eye, {
-                duration: delay,
-                x: mousePosition.x - 20,
-                y: mousePosition.y - 15,
-                r: 12,
-                scale: 1.8,
-                ease: 'power3',
-                fill: 'white',
-            })
-        } else {
-            gsap.to(cursor, {
-                duration: delay,
-                x: mousePosition.x,
-                y: mousePosition.y,
-                r: 8,
-                ease: 'power3',
-                fill: 'black',
-                strokeWidth: '0px',
-            })
-            gsap.to(eye, {
-                duration: delay,
-                x: mousePosition.x - 50,
-                y: mousePosition.y - 50,
-                r: 12,
-                ease: 'power3',
-                fill: 'white',
-            })
+        const currentX = mousePosition.x
+        const currentY = mousePosition.y + window.scrollY
+
+        if (element) {
+            if (
+                !element.tagName ||
+                (element.tagName !== 'A' &&
+                    element.id !== 'logo' &&
+                    !element.classList.contains('effect-title'))
+            ) {
+                gsap.to(cursor, {
+                    duration: delay,
+                    x: currentX,
+                    y: currentY,
+                    r: 8,
+                    ease: 'power3',
+                    fill: 'black',
+                    strokeWidth: '0px',
+                    from: {
+                        mixBlendMode: 'normal',
+                        stroke: 'grey',
+                        strokeWidth: '3px',
+                    },
+                })
+                gsap.to(eye, {
+                    duration: delay,
+                    x: currentX - 50,
+                    y: currentY - 50,
+                    r: 12,
+                    ease: 'power3',
+                    fill: 'white',
+                })
+            } else if (element.classList.contains('effect-title')) {
+                gsap.to(cursor, {
+                    duration: delay,
+                    x: currentX,
+                    y: currentY,
+                    r: 50,
+                    fill: 'red',
+                    mixBlendMode: 'normal',
+                    stroke: 'grey',
+                    strokeWidth: '3px',
+                })
+                gsap.to(eye, {
+                    duration: delay,
+                    x: currentX - 20,
+                    y: currentY - 15,
+                    r: 12,
+                    scale: 1.8,
+                    ease: 'power3',
+                    fill: 'white',
+                })
+            } else {
+                gsap.to(cursor, {
+                    duration: delay,
+                    x: currentX,
+                    y: currentY,
+                    fill: 'black',
+                    r: 30,
+                    strokeWidth: '0px',
+                })
+                gsap.to(eye, {
+                    duration: delay,
+                    x: currentX,
+                    y: currentY,
+                    ease: 'power3',
+                    scale: 0,
+                    fill: 'white',
+                })
+            }
         }
     }, [mousePosition])
 
     return (
-        <svg id="cursor" width="100%" height="100%">
+        <svg id="cursor" width="100%" height={document.body.scrollHeight}>
             <circle
                 r="8"
                 fill="black"
