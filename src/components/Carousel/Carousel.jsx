@@ -1,43 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
+import CarouselItem from '../CarouselItem/CarouselItem'
 import * as styles from './Carousel.module.scss'
 
 function Carousel() {
-    return (
-        <main className={`${styles.carousel}`}>
-            <article className={`${styles.picture}`}>
-                <img
-                    src="https://uploads-ssl.webflow.com/60c73b61baea9c518130ee68/62375338d69258c01fe12876_00_concepts-hero.jpg"
-                    alt=""
-                />
-            </article>
-            <article className={`${styles.description}`}>
-                <p>
-                    <b>A</b> selection of concept designs I&apos;ve made over
-                    the years.
-                </p>
-            </article>
-            <article className={`${styles.title} effect-title`} id="title">
-                <div className={`${styles.thing} effect-title`}>
-                    <h1 className="effect-title">
-                        SHOW
-                        <br /> PROJECT
-                        <br />
-                        CONCEPT <br />
-                        DESIGNS
-                    </h1>
+    const [activeIndex, setActiveIndex] = useState(0)
 
-                    <h1 className="effect-title">✦</h1>
-                </div>
-            </article>
-            <article className={`${styles.controls}`}>
-                <button type="button">
-                    <i className="fas fa-chevron-left" />
-                </button>
-                <button type="button">
-                    <i className="fas fa-chevron-right" />
-                </button>
-            </article>
-        </main>
+    function handleNavigate(direction) {
+        if (direction === 'left') {
+            setActiveIndex(
+                activeIndex === 0 ? items.length - 1 : activeIndex - 1
+            )
+        } else if (direction === 'right') {
+            setActiveIndex(
+                activeIndex === items.length - 1 ? 0 : activeIndex + 1
+            )
+        }
+    }
+
+    const items = [
+        {
+            index: 0,
+            status: activeIndex === 0 ? 'active' : 'inactive',
+            text: 'A selection of various concept designs that I have created for various projects.',
+            title: 'CONCEPT DESIGNS',
+            srcLink:
+                'https://uploads-ssl.webflow.com/60c73b61baea9c518130ee68/62375338d69258c01fe12876_00_concepts-hero.jpg ',
+        },
+        {
+            index: 1,
+            status: activeIndex === 1 ? 'active' : 'inactive',
+            text: 'A vintage website for an old school barber shop. ',
+            title: 'BARBER SHOP',
+            srcLink:
+                'https://uploads-ssl.webflow.com/60c73b61baea9c518130ee68/6219f1ba82b12ab80cf15e2a_spbp-hero.jpg',
+        },
+    ]
+    return (
+        <div className={`${styles.carousel}`}>
+            {items.map((item) => {
+                const classNames = [styles.item]
+                if (item.status === 'active') {
+                    classNames.push(styles.active)
+                } else {
+                    classNames.push(styles.inactive)
+                }
+                return (
+                    <div className={classNames.join(' ')}>
+                        <CarouselItem
+                            key={item.index}
+                            data-index={item.index}
+                            onNavigate={handleNavigate}
+                            text={item.text}
+                            srcLink={item.srcLink}
+                            title={item.title}
+                        />
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 

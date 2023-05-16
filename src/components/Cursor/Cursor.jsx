@@ -32,11 +32,6 @@ function Cursor({ mousePosition }) {
                     ease: 'power3',
                     fill: 'black',
                     strokeWidth: '0px',
-                    from: {
-                        mixBlendMode: 'normal',
-                        stroke: 'grey',
-                        strokeWidth: '3px',
-                    },
                 })
                 gsap.to(eye, {
                     duration: delay,
@@ -53,7 +48,6 @@ function Cursor({ mousePosition }) {
                     y: currentY,
                     r: 50,
                     fill: 'red',
-                    mixBlendMode: 'normal',
                     stroke: 'grey',
                     strokeWidth: '3px',
                 })

@@ -1,147 +1,31 @@
-@use 'src/utils/variables' as *;
-
 .carousel {
-    background-color: $background-color;
-    color: $secondary-color;
-
-    flex-grow: 1;
-    display: grid;
-    grid-template-rows: 3fr 1fr;
-    grid-template-columns: 2fr 1fr;
-    @media (max-width: 977px) {
-        display: flex;
-        flex-direction: column;
-        .controls {
-            height: 150px;
-        }
-    }
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
 
-.picture {
-    border-bottom: $border-size $border-color solid;
-
-    img {
-        filter: hue-rotate(290deg);
+.item {
+    visibility: hidden;
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    main {
         height: 100%;
         width: 100%;
-        object-fit: cover;
-
-        @media (max-width: 977px) {
-        }
     }
 }
 
-.description {
-    border-left: $border-size $border-color solid;
-    border-bottom: $border-size $border-color solid;
-    display: flex;
-    flex-direction: column;
-    flex-flow: column-reverse;
-    padding: 4em;
-    font-family: $normal-font;
-    font-size: 1.2rem;
-    text-align: left;
-    white-space: pre-line;
-    line-height: 1.7;
-
-    p {
-        width: 80%;
-    }
-    background: radial-gradient(
-            circle at 1% 50%,
-            rgba(20, 51, 55, 1),
-            rgba(0, 0, 0, 0.86)
-        ),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 290 290' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='9.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+.item.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.title {
-    display: flex;
-    cursor: pointer;
-    background: radial-gradient(
-            circle at 1% 190%,
-            rgba(20, 51, 55, 1),
-            rgba(0, 0, 0, 0.86)
-        ),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 290 290' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='9.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    h1 {
-        font-size: 5rem;
-        padding-left: 0.89em;
-        width: 75%;
-        font-family: $title-font;
-        font-weight: 800;
-        align-self: center;
-        color: white;
-        line-height: 0.8;
-
-        height: 128px;
-        transition: all 0.5s ease;
-        top: -128px;
-        position: relative;
-    }
-
-    &:hover {
-        h1 {
-            color: $primary-color;
-            top: -0px;
-        }
-    }
-
-    i {
-        font-size: 5rem;
-        align-self: center;
-
-        color: $primary-color;
-    }
-}
-
-@media (max-width: 977px) {
-    .title {
-        padding-top: 0.5em;
-        h1 {
-            padding-left: 0.2em;
-        }
-    }
-}
-.thing {
-    height: 128px;
-    width: 100%;
-    overflow: hidden;
-    align-self: center;
-    display: flex;
-}
-
-.controls {
-    border-left: $border-size $border-color solid;
-    background: radial-gradient(
-            circle at 50% 100%,
-            rgba(20, 51, 55, 1),
-            rgba(0, 0, 0, 0.86)
-        ),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 290 290' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='9.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-
-    button {
-        width: 50%;
-        height: 100%;
-        background-color: $background-color;
-        border: $border-size $border-color solid;
-        color: $primary-color;
-
-        i {
-            transform: scale(5);
-        }
-    }
-    // remove all styling from the button
-    button::-moz-focus-inner {
-        border: 0;
-    }
-    button:focus {
-        outline: none;
-    }
-    button:active {
-        outline: none;
-    }
-    button:hover {
-        outline: none;
-    }
+.item.inactive {
+    opacity: 0;
+    visibility: hidden;
+    filter: blur(1);
+    transform: translateX(-100%);
 }
