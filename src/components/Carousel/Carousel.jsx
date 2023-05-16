@@ -4,19 +4,6 @@ import * as styles from './Carousel.module.scss'
 
 function Carousel() {
     const [activeIndex, setActiveIndex] = useState(0)
-
-    function handleNavigate(direction) {
-        if (direction === 'left') {
-            setActiveIndex(
-                activeIndex === 0 ? items.length - 1 : activeIndex - 1
-            )
-        } else if (direction === 'right') {
-            setActiveIndex(
-                activeIndex === items.length - 1 ? 0 : activeIndex + 1
-            )
-        }
-    }
-
     const items = [
         {
             index: 0,
@@ -35,6 +22,18 @@ function Carousel() {
                 'https://uploads-ssl.webflow.com/60c73b61baea9c518130ee68/6219f1ba82b12ab80cf15e2a_spbp-hero.jpg',
         },
     ]
+    function handleNavigate(direction) {
+        if (direction === 'left') {
+            setActiveIndex(
+                activeIndex === 0 ? items.length - 1 : activeIndex - 1
+            )
+        } else if (direction === 'right') {
+            setActiveIndex(
+                activeIndex === items.length - 1 ? 0 : activeIndex + 1
+            )
+        }
+    }
+
     return (
         <div className={`${styles.carousel}`}>
             {items.map((item) => {
@@ -49,6 +48,7 @@ function Carousel() {
                         <CarouselItem
                             key={item.index}
                             data-index={item.index}
+                            // eslint-disable-next-line react/jsx-no-bind
                             onNavigate={handleNavigate}
                             text={item.text}
                             srcLink={item.srcLink}

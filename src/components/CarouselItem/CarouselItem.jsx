@@ -1,8 +1,11 @@
 import React from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types'
 import * as styles from './CarouselItem.module.scss'
 
 function CarouselItem({ onNavigate, text, title, srcLink }) {
     const navigate = (direction) => {
+        // eslint-disable-next-line no-unused-expressions
         onNavigate && onNavigate(direction) // Call the onNavigate prop with the direction argument
     }
 
@@ -48,6 +51,14 @@ function CarouselItem({ onNavigate, text, title, srcLink }) {
             </article>
         </main>
     )
+}
+
+CarouselItem.propTypes = {
+    // eslint-disable-next-line react/require-default-props
+    onNavigate: PropTypes.func,
+    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    srcLink: PropTypes.string.isRequired,
 }
 
 export default CarouselItem

@@ -1,5 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import PropTypes from 'prop-types'
 
 function Cursor({ mousePosition }) {
     const svgRef = useRef(null)
@@ -102,3 +104,9 @@ function Cursor({ mousePosition }) {
 }
 
 export default Cursor
+Cursor.propTypes = {
+    mousePosition: PropTypes.shape({
+        x: PropTypes.number.isRequired,
+        y: PropTypes.number.isRequired,
+    }).isRequired,
+}
