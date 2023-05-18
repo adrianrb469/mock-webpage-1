@@ -24,8 +24,5 @@
 }
 
 .item.inactive {
-    opacity: 0;
-    visibility: hidden;
-    filter: blur(1);
     transform: translateX(-100%);
 }

@@ -4,11 +4,12 @@ import { gsap } from 'gsap'
 import PropTypes from 'prop-types'
 
 function Cursor({ mousePosition }) {
-    const svgRef = useRef(null)
-    const svgRef2 = useRef(null)
+    const circleSVG = useRef(null)
+    const eyeSVG = useRef(null)
+
     useEffect(() => {
-        const cursor = svgRef.current
-        const eye = svgRef2.current
+        const cursor = circleSVG.current
+        const eye = eyeSVG.current
         const delay = 0.24
 
         const element = document.elementFromPoint(
@@ -49,7 +50,7 @@ function Cursor({ mousePosition }) {
                     x: currentX,
                     y: currentY,
                     r: 50,
-                    fill: 'red',
+                    fill: 'crimson',
                     stroke: 'grey',
                     strokeWidth: '3px',
                 })
@@ -90,12 +91,11 @@ function Cursor({ mousePosition }) {
                 fill="black"
                 filter="url(#turbulance)"
                 className="cursor-circle"
-                ref={svgRef}
+                ref={circleSVG}
                 id="thingamajig"
             />
-
             <path
-                ref={svgRef2}
+                ref={eyeSVG}
                 d="M15 12c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3zm9-.449s-4.252 8.449-11.985 8.449c-7.18 0-12.015-8.449-12.015-8.449s4.446-7.551 12.015-7.551c7.694 0 11.985 7.551 11.985 7.551zm-7 .449c0-2.757-2.243-5-5-5s-5 2.243-5 5 2.243 5 5 5 5-2.243 5-5z"
                 id="eye"
             />
